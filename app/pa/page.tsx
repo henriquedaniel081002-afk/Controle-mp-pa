@@ -321,7 +321,62 @@ export default function ControlePA() {
 
             <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-4">
               <h3 className="text-sm font-semibold text-zinc-100">MPs/insumos do PA</h3>
-              <div className="mt-3 overflow-x-auto">
+
+              {/* Mobile: cards (sem scroll interno) */}
+              <div className="mt-3 space-y-3 md:hidden">
+                {fichaForSelected.map((item) => (
+                  <div
+                    key={item.cod_mp}
+                    className="rounded-xl border border-zinc-800 bg-zinc-950/40 p-3"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-zinc-400">Código MP</p>
+                        <p className="text-sm font-semibold text-zinc-100">{item.cod_mp}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs font-semibold text-zinc-400">UM</p>
+                        <p className="text-sm font-semibold text-zinc-100">{item.um}</p>
+                      </div>
+                    </div>
+
+                    <div className="mt-2">
+                      <p className="text-xs font-semibold text-zinc-400">Descrição MP</p>
+                      <p className="text-sm text-zinc-100 break-words whitespace-normal">
+                        {item.desc_mp}
+                      </p>
+                    </div>
+
+                    <div className="mt-3 grid grid-cols-2 gap-3">
+                      <div>
+                        <p className="text-xs font-semibold text-zinc-400">FC</p>
+                        <p className="text-sm font-semibold text-zinc-100">{formatFC(item.fc)}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-zinc-400">Estoque MP</p>
+                        <p className="text-sm font-semibold text-zinc-100">
+                          {formatNumber(item.estoque_mp)}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-zinc-400">Consumo mensal MP</p>
+                        <p className="text-sm font-semibold text-zinc-100">
+                          {formatNumber(item.consumo_mensal_mp)}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-zinc-400">Quant. produzível</p>
+                        <p className="text-sm font-semibold text-zinc-100">
+                          {formatNumber(item.quant_produzivel)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop: manter tabela (inalterado) */}
+              <div className="mt-3 hidden md:block overflow-x-auto">
                 <table className="min-w-full text-left text-sm">
                   <thead className="text-xs uppercase text-zinc-500">
                     <tr>
